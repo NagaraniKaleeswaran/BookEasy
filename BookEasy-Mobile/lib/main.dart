@@ -5,10 +5,11 @@ import 'providers/service_provider.dart';
 import 'providers/appointment_provider.dart';
 import 'screens/splash_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  const env = String.fromEnvironment('ENV', defaultValue: 'dev');
+  final env = kReleaseMode ? 'prod' : 'dev';
   await dotenv.load(fileName: ".env.$env");
 
   runApp(
